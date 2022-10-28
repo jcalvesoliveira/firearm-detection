@@ -1,0 +1,9 @@
+This is release 2022-08-15T08:27:51Z of the dataset firearms-in-surveillance-video created 
+on MekaBytes.com. A full list of contributors can be found below.
+This particular download exists thanks to user jcalvesoliveira. 
+It was generated on 2022-10-28 at 00:24:09.
+
+=== CONTRIBUTORS ===
+kushalw
+TACIXAT
+coffee

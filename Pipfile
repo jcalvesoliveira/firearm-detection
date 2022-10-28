@@ -1,0 +1,27 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+click = "*"
+pandas = "*"
+pillow = "*"
+scipy = "*"
+scikit-image = "*"
+opencv-python = "*"
+h5py = "*"
+imgaug = "*"
+mask-rcnn = {git = "https://github.com/akTwelve/Mask_RCNN.git"}
+keras = "==2.4.3"
+tensorflow = "==2.4.1"
+typer = "*"
+
+[dev-packages]
+yapf = "*"
+
+[requires]
+python_version = "3.7"
+
+[pipenv]
+allow_prereleases = true
