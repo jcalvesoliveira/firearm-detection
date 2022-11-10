@@ -10,18 +10,21 @@ pillow = "*"
 scipy = "*"
 scikit-image = "*"
 opencv-python = "*"
-h5py = "*"
+h5py = "==2.10.0"
 imgaug = "*"
-mask-rcnn = {git = "https://github.com/akTwelve/Mask_RCNN.git"}
-keras = "==2.4.3"
-tensorflow = "==2.4.1"
+mask-rcnn = {git = "https://github.com/matterport/Mask_RCNN.git"}
+keras = "==2.2.4"
+tensorflow = "==1.15.3"
+tensorflow_estimator = "==1.15.1"
 typer = "*"
+protobuf = "==3.6.1"
+termcolor = "*"
 
 [dev-packages]
 yapf = "*"
 
 [requires]
-python_version = "3.7"
+python_version = "3.6"
 
 [pipenv]
 allow_prereleases = true
