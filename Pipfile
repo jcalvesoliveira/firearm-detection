@@ -19,6 +19,7 @@ tensorflow_estimator = "==1.15.1"
 typer = "*"
 protobuf = "==3.6.1"
 termcolor = "*"
+tensorflow-directml = "==1.15.8"
 
 [dev-packages]
 yapf = "*"

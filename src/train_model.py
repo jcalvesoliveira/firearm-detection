@@ -14,7 +14,6 @@ class PredictionConfig(Config):
     NUM_CLASSES = 1 + 1
     GPU_COUNT = 1
     IMAGES_PER_GPU = 1
-    USE_MINI_MASK = False
 
 
 # calculate the mAP for a model on a given dataset
@@ -37,12 +36,12 @@ def evaluate_model(dataset, model, cfg):
 def get_datasets():
     # train set
     train_set = GunDataset()
-    train_set.load_dataset('data/raw', is_train=True)
+    train_set.load_dataset('data', is_train=True)
     train_set.prepare()
     print('Train: %d' % len(train_set.image_ids))
     # test/val set
     test_set = GunDataset()
-    test_set.load_dataset('data/raw', is_train=False)
+    test_set.load_dataset('data', is_train=False)
     test_set.prepare()
     print('Test: %d' % len(test_set.image_ids))
     return train_set, test_set
@@ -107,7 +106,7 @@ def model_transfer_learning():
     cfg = PredictionConfig()
     # define the model
     model = MaskRCNN(mode='inference', model_dir='models/', config=cfg)
-    model.load_weights('models/mask_rcnn_coco_ads_cfg.h5', by_name=True)
+    model.load_weights('models/mask_rcnn_coco_gun_cfg.h5', by_name=True)
     # evaluate model on training dataset
     train_mAP = evaluate_model(train_set, model, config)
     print("Train mAP: %.3f" % train_mAP)

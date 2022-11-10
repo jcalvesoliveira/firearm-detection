@@ -20,7 +20,6 @@ class GunConfig(Config):
     IMAGES_PER_GPU = 1
     IMAGE_MIN_DIM = 400
     IMAGE_MAX_DIM = 512
-    USE_MINI_MASK = False
 
 
 class GunDataset(Dataset):
