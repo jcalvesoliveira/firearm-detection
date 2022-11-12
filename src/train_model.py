@@ -69,20 +69,10 @@ def model_mrcnn():
     # save model
     model.keras_model.save_weights('models/mask_rcnn_gun_cfg.h5')
 
-    cfg = PredictionConfig()
-    # define the model
-    model = MaskRCNN(mode='inference', model_dir='models/', config=cfg)
-    model.load_weights('models/mask_rcnn_gun_cfg.h5', by_name=True)
-    # evaluate model on training dataset
-    train_mAP = evaluate_model(train_set, model, config)
-    print("Train mAP: %.3f" % train_mAP)
-    # evaluate model on test dataset
-    test_mAP = evaluate_model(test_set, model, config)
-    print("Test mAP: %.3f" % test_mAP)
-
 
 @app.command()
 def model_transfer_learning():
+    MODEL_NAME = 'mask_rcnn_coco_gun_transfer_learning.h5'
     train_set, test_set = get_datasets()
     config = prepare_config()
     # define the model
@@ -101,18 +91,7 @@ def model_transfer_learning():
                 epochs=5,
                 layers='heads')
     # save model
-    model.keras_model.save_weights('models/mask_rcnn_coco_gun_cfg.h5')
-
-    cfg = PredictionConfig()
-    # define the model
-    model = MaskRCNN(mode='inference', model_dir='models/', config=cfg)
-    model.load_weights('models/mask_rcnn_coco_gun_cfg.h5', by_name=True)
-    # evaluate model on training dataset
-    train_mAP = evaluate_model(train_set, model, config)
-    print("Train mAP: %.3f" % train_mAP)
-    # evaluate model on test dataset
-    test_mAP = evaluate_model(test_set, model, config)
-    print("Test mAP: %.3f" % test_mAP)
+    model.keras_model.save_weights(MODEL_NAME)
 
 
 if __name__ == '__main__':

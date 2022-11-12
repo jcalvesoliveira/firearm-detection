@@ -9,12 +9,12 @@ from PIL import Image
 from mrcnn.utils import Dataset
 from mrcnn.config import Config
 
-LABES_MAP = {'firearm': 1, 'negative': 2}
+LABES_MAP = {'firearm': 1}
 
 
 class GunConfig(Config):
     NAME = "gun_cfg"
-    NUM_CLASSES = 1 + 2
+    NUM_CLASSES = 1 + 1
     STEPS_PER_EPOCH = 131
     GPU_COUNT = 1
     IMAGES_PER_GPU = 1
@@ -28,6 +28,8 @@ class GunDataset(Dataset):
     def convert_annotations(annotations: pd.DataFrame) -> pd.DataFrame:
         data = []
         for index, row in annotations.iterrows():
+            if row['labels'][0] != 'firearm':
+                continue
             row_data = {}
             row_data['x1'] = row['coordinates'][0]['x']
             row_data['y1'] = row['coordinates'][0]['y']
@@ -36,6 +38,12 @@ class GunDataset(Dataset):
             row_data['label'] = row['labels'][0]
             data.append(row_data)
         return pd.DataFrame(data)
+
+    @staticmethod
+    def has_firearm(annotation_path: str):
+        boxes = pd.read_json(annotation_path, lines=True)
+        boxes = GunDataset.convert_annotations(boxes).values
+        return boxes.shape[0] > 0
 
     @staticmethod
     def convert_bound_boxes_from_perc_to_loc(annotations: np.ndarray, w: int,
@@ -72,6 +80,8 @@ class GunDataset(Dataset):
             image_id = filename[:-4]
             img_path = images_dir + filename
             ann_path = annotations_dir + str(image_id) + '.json'
+            if not self.has_firearm(ann_path):
+                continue
             self.add_image('dataset',
                            image_id=image_id,
                            path=img_path,
