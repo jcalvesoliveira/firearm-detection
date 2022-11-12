@@ -55,7 +55,8 @@ def prepare_config():
 
 
 @app.command()
-def model_mrcnn():
+def model_mrcnn(epochs: int = 5):
+    MODEL_NAME = f'mask_rcnn_gun_cfg_{epochs}.h5'
     train_set, test_set = get_datasets()
     config = prepare_config()
     # define the model
@@ -64,15 +65,15 @@ def model_mrcnn():
     model.train(train_set,
                 test_set,
                 learning_rate=config.LEARNING_RATE,
-                epochs=5,
+                epochs=epochs,
                 layers='all')
     # save model
-    model.keras_model.save_weights('models/mask_rcnn_gun_cfg.h5')
+    model.keras_model.save_weights(f"models/{MODEL_NAME}")
 
 
 @app.command()
-def model_transfer_learning():
-    MODEL_NAME = 'mask_rcnn_coco_gun_transfer_learning.h5'
+def model_transfer_learning(epochs: int = 5):
+    MODEL_NAME = f'mask_rcnn_coco_gun_transfer_learning_{epochs}.h5'
     train_set, test_set = get_datasets()
     config = prepare_config()
     # define the model
@@ -88,10 +89,10 @@ def model_transfer_learning():
     model.train(train_set,
                 test_set,
                 learning_rate=config.LEARNING_RATE,
-                epochs=5,
+                epochs=epochs,
                 layers='heads')
     # save model
-    model.keras_model.save_weights(MODEL_NAME)
+    model.keras_model.save_weights(f"models/{MODEL_NAME}")
 
 
 if __name__ == '__main__':
