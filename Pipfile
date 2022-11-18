@@ -21,6 +21,7 @@ tensorflow-directml = "==1.15.8"
 
 [dev-packages]
 yapf = "*"
+ipykernel = "*"
 
 [requires]
 python_version = "3.6"
