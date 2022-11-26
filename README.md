@@ -1,4 +1,8 @@
-# firearm-detection
+# Firearm Detection
+
+The goal of this project is to produce a machine learning model to detect firearms on surveillance video.
+
+Dataset: https://mekabytes.com/dataset/info/firearms-in-surveillance-video
 
 ## Project Organization
 
@@ -24,10 +28,6 @@
         │
         ├── predict_model  <- Script to train models.
         │
-        ├── train_model    <- Scripts to trained models to make
-        │
-        └── visualize.py  <- Scripts to create exploratory and results oriented visualizations
+        └── train_model    <- Scripts to trained models to make
 
 ---
-
-<p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>
